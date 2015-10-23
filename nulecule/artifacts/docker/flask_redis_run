@@ -1,2 +1,0 @@
-docker run -d --name=redis -v $(pwd)/redis:/redis -p 6379 $redisimage redis-server
-docker run -d -p 5000:5000 --link redis:redis --name flask $flaskimage
