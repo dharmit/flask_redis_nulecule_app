@@ -1,2 +1,4 @@
 dump.rdb
 *.pyc
+.vagrant/*
+Vagrantfile
