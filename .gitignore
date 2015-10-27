@@ -2,3 +2,4 @@ dump.rdb
 *.pyc
 .vagrant/*
 Vagrantfile
+*.tar
