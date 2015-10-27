@@ -18,4 +18,9 @@ def index():
     c = int(r.get("count"))
     c += 1
     r.set("count", c)
-    return "This page has been visited " + r.get("count") + " times!"
+    return "<div align=center>" +\
+        "<img src='https://pbs.twimg.com/profile_images/" +\
+        "458352291767013376/K9nN_rhH_400x400.png'>" +\
+        "<h1>This page has been visited " + r.get("count") + " times!</h1>" +\
+        "<br>" +\
+        "</div>"
