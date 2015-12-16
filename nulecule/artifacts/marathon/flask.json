@@ -1,0 +1,15 @@
+{
+    "id": "flask",
+    "container": {
+        "type": "DOCKER",
+        "docker":{
+            "network":"BRIDGE",
+            "image": "$flaskImage",
+            "portMappings": [
+            {"containerPort": 5000, "hostPort": 0, "protocol": "tcp"}
+            ]
+        }
+    },
+    "cpus": 0.5,
+    "mem": 16
+}

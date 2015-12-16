@@ -21,6 +21,8 @@ graph:
         kubernetes:
           - file://artifacts/kubernetes/redis-service.yaml
           - file://artifacts/kubernetes/redis-rc.yaml
+        marathon:
+          - file://artifacts/marathon/redis.json
     - name: flask
       params:
         - name: flaskImage
@@ -35,3 +37,5 @@ graph:
         kubernetes:
           - file://artifacts/kubernetes/flask-service.yaml
           - file://artifacts/kubernetes/flask-rc.yaml
+        marathon:
+          - file://artifacts/marathon/flask.json

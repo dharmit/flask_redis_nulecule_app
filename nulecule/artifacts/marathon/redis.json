@@ -1,0 +1,23 @@
+{
+    "id": "redis",
+    "cmd": "redis-server",
+    "container": {
+        "type": "DOCKER",
+        "docker":{
+            "network":"BRIDGE",
+            "image": "$redisImage",
+            "portMappings": [
+            {"containerPort": 6379, "hostPort": 0, "protocol": "tcp"}
+            ]
+        },
+        "volumes": [
+        {
+            "containerPath": "/redis",
+            "hostPath": "/opt/redis",
+            "mode": "RW"
+        }
+        ]
+    },
+    "cpus": 0.5,
+    "mem": 16
+}
