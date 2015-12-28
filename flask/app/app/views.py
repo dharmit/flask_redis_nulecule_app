@@ -3,23 +3,22 @@ from urlparse import urlparse
 import os
 import redis
 
-if 'REDIS_PORT' in os.environ:
-    redis_port = os.environ['REDIS_PORT']
-    r = redis.StrictRedis(host=urlparse(redis_port).hostname,
-                          port=urlparse(redis_port).port,
-                          db=0)
-else:
-    import subprocess
-    response = subprocess.Popen(["ping", "-c1", "redis.marathon.mesos"], stdout=subprocess.PIPE).communicate()[0]
-    ip = response.split('(')[1].split(')')[0]
-    r = redis.StrictRedis(host=ip,
-                          port=6379,
-                          db=0)
-
 
 @app.route('/')
 @app.route('/index')
 def index():
+    if 'REDIS_PORT' in os.environ:
+        redis_port = os.environ['REDIS_PORT']
+        r = redis.StrictRedis(host=urlparse(redis_port).hostname,
+                              port=urlparse(redis_port).port,
+                              db=0)
+    else:
+        import subprocess
+        response = subprocess.Popen(["dig", "redis.marathon.mesos", "+short"], stdout=subprocess.PIPE).communicate()[0].rstrip()
+        r = redis.StrictRedis(host=response,
+                              port=6379,
+                              db=0)
+
     if r.get("count") == None:
         r.set("count", 0)
     c = int(r.get("count"))
