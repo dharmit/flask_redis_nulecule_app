@@ -7,7 +7,13 @@ import redis
 @app.route('/')
 @app.route('/index')
 def index():
-    if 'REDIS_PORT' in os.environ:
+    if 'REDIS_PORT' in os.environ and 'REDIS_HOST' in os.environ:
+        redis_port = os.environ['REDIS_PORT']
+        redis_host = os.environ['REDIS_HOST']
+        r = redis.StrictRedis(host=redis_host,
+                              port=redis_port,
+                              db=0)
+    elif 'REDIS_PORT' in os.environ:
         redis_port = os.environ['REDIS_PORT']
         r = redis.StrictRedis(host=urlparse(redis_port).hostname,
                               port=urlparse(redis_port).port,
